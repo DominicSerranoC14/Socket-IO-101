@@ -1,7 +1,10 @@
 'use strict';
 
-angular
-  .module('MEAN', [])
-  .controller('mainCtrl', ($scope) => {
-    $scope.title = 'MEAN from Angular';
+  app.controller('mainCtrl', ($scope, $http) => {
+
+    //Receive a var with $http from Node sever
+    $http.get('/api/title').then(({data: {title}}) =>
+      $scope.title = title
+    );
+
   });

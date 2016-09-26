@@ -16,7 +16,9 @@ app.use(express.static('client'));
 
 /////////////////////////////////////////
 // Routes
-
+app.get('/api/title', (req, res) => {
+  res.send({title: 'MEAN from Angular with node'});
+});
 /////////////////////////////////////////
 
 
