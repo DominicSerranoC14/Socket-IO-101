@@ -1,0 +1,28 @@
+{
+  "name": "node-mean-app",
+  "version": "1.0.0",
+  "description": "A node MEAN stack app",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DominicSerranoC14/Node-MEAN-Example.git"
+  },
+  "keywords": [
+    "Nodejs",
+    "MEAN",
+    "Stack"
+  ],
+  "author": "Dominic Serrano",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DominicSerranoC14/Node-MEAN-Example/issues"
+  },
+  "homepage": "https://github.com/DominicSerranoC14/Node-MEAN-Example#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
