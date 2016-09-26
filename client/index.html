@@ -7,8 +7,13 @@
 
 <body>
 
-  <h1>Hello</h1>
+  <div ng-app='MEAN'>
+
+    <div ng-controller='mainCtrl'><h1>{{title}}</h1></div>
+
+  </div>
 
   <script src="/lib/angular/angular.min.js"></script>
+  <script src='/controllers/mainCtrl.js'></script>
 </body>
 </html>
