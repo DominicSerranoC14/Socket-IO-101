@@ -17,7 +17,20 @@ app.use(express.static('client'));
 /////////////////////////////////////////
 // Routes
 app.get('/api/title', (req, res) => {
-  res.send({title: 'MEAN from Angular with node'});
+  res.send({title: 'MEAN Chat'});
+});
+
+app.get('/api/messages', (req, res) => {
+  res.send({messages: [
+    {
+      author: 'Jack',
+      content: 'Hello'
+    },
+    {
+      author: 'John',
+      content: 'Hey'
+    }
+  ]})
 });
 /////////////////////////////////////////
 

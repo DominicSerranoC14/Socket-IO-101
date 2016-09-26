@@ -7,10 +7,12 @@
 
 <body ng-app='MEAN'>
 
-    <div ng-controller='mainCtrl'><h1>{{title}}</h1></div>
+    <div ng-view></div>
 
   <script src="/lib/angular/angular.min.js"></script>
+  <script src="/lib/angular-route/angular-route.min.js"></script>
   <script src="/app/app.js"></script>
   <script src='/controllers/mainCtrl.js'></script>
+  <script src='/controllers/ChatCtrl.js'></script>
 </body>
 </html>
