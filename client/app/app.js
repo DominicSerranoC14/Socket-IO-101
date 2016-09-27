@@ -1,7 +1,7 @@
 'use strict';
 
 const app = angular.module('MEAN', ['ngRoute'])
-  .config(($routeProvider) => {
+  .config(($routeProvider, $locationProvider) => {
 
     $routeProvider
     .when('/', {
@@ -12,5 +12,12 @@ const app = angular.module('MEAN', ['ngRoute'])
       controller: 'ChatCtrl',
       templateUrl: 'partials/chat.html'
     })
+    .otherwise('/');
+
+    //Cleans up the url, does not use '!#' in url
+    $locationProvider.html5Mode({
+      enabled: true,
+      requireBase: false
+    });
 
   });
