@@ -1,5 +1,7 @@
-# Node-MEAN-Example
+# Mean Stack with Socket.io 101
 This app utilizes the MEAN stack (MongoDB, ExpressJs, AngularJs, NodeJs), a Javascript software stack for building dynamic web apps.
+
+Socket.io is also integrated into the MEAN stack to create a real time chat.
 
 ---
 
@@ -12,3 +14,4 @@ This app utilizes the MEAN stack (MongoDB, ExpressJs, AngularJs, NodeJs), a Java
 - Bower v1.7.9
 - Angular v1.5.8
 - Angular-route v1.5.8
+- Socket.io v1.4.8
