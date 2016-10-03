@@ -1,7 +1,11 @@
 'use strict';
 
 const express = require('express');
+const socketio = require('socket.io');
 const app = express();
+const { Server } = require('http');
+const server = Server(app);
+const io = socketio(server);
 const { connect } = require('./db/database');
 const { json } = require('body-parser');
 const port = process.env.PORT || 3000;
@@ -56,6 +60,16 @@ app.use((req, res) => {
 /////////////////////////////////////////
 connect()
   .then(() => {
-    app.listen(port, () => console.log(`Listening on port ${port}`));
+    server.listen(port, () => console.log(`Listening on port ${port}`));
+
+    //Socket io logic for serverside handling -- handles specific socket
+    io.on('connection', (socket) => {
+
+      console.log("User signed in", socket.id);
+      socket.on('disconnect', () => console.log('User disconnected'))
+
+    });
+
+
   });
 /////////////////////////////////////////
