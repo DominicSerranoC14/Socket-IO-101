@@ -2,25 +2,33 @@
 
   app.controller('ChatCtrl', function ($scope, $http) {
 
-    /////////////////////////////////////////
-    //Receive the array of messages
-    $http.get('/api/messages').then(({data: {messages}}) => {
-      $scope.messages = messages;
-    });
+    //Clears the message form field
+    $scope.clearMsgForm = () => {
+      $scope.author = "";
+      $scope.content = "";
+    }
 
 
     $scope.sendMessage = () => {
-
       //Store the users message and name from the form
-      const msg = { author: $scope.author, content: $scope.content};
+      const reqOrMsg = { author: $scope.author, content: $scope.content};
 
-      //Send the msg obj to the api
-      //Then push the msg to the array to display in the angular html
-      $http.post('/api/messages', msg)
-      .then(() => $scope.messages.push(msg));
-
+      //Emit the msg obj to the server
+      socket.emit('PostMessage', reqOrMsg);
+      $scope.clearMsgForm();
     };
-    /////////////////////////////////////////
+
+
+    //Receive the array of messages
+    $http.get('/api/messages').then(({data: {messages}}) => {
+      $scope.messages = messages;
+
+      socket.on('newMessage', (msg) => {
+        $scope.messages.push(msg);
+        //Use $apply for anything outside of angulars native modules to rerun the digest cycle
+        $scope.$apply();
+      });
+    });
 
 
   });

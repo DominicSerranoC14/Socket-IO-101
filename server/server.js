@@ -36,16 +36,6 @@ app.get('/api/messages', (req, res, err) => {
 });
 
 
-//Handle a front-end posted msg
-app.post('/api/messages', (req, res, err) => {
-  const msg = req.body;
-
-  Message.create(msg)
-  .then(msg => res.json(msg))
-  .catch(err);
-});
-
-
 //Middleware catch for virtual urls when using 'html5Mode' in Angular
 app.use('/api', (req, res) => {
   res.status(404).send({message: 'Not found'});
@@ -68,8 +58,27 @@ connect()
       console.log("User signed in", socket.id);
       socket.on('disconnect', () => console.log('User disconnected'))
 
+      //On PostMessage fire the cb()
+      socket.on('PostMessage', createMessage);
+
     });
 
 
   });
-/////////////////////////////////////////
+
+
+  function createMessage(reqOrMsg, res, next) {
+    const msg = reqOrMsg.body || reqOrMsg;
+
+    Message
+    .create(msg)
+    .then((msg) => {
+      io.emit('newMessage', msg);
+      return msg;
+    })
+    .then((msg) => res && res.status(201).json(msg))
+    .catch((err) => {
+      next && next(err);
+      console.error(err);
+    });
+  }
