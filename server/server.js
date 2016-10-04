@@ -13,16 +13,12 @@ const Message = require('./models/message');
 app.set('port', port);
 /////////////////////////////////////////
 
-
-/////////////////////////////////////////
 //Middle wares
 //Express.static is based on where 'server.js' is called
 app.use(express.static('client'));
 app.use(json());
-/////////////////////////////////////////
 
 
-/////////////////////////////////////////
 // Routes
 app.get('/api/title', (req, res) => {
   res.json({title: 'MEAN Chat'});
@@ -35,7 +31,6 @@ app.get('/api/messages', (req, res, err) => {
   .catch(err)
 });
 
-
 //Middleware catch for virtual urls when using 'html5Mode' in Angular
 app.use('/api', (req, res) => {
   res.status(404).send({message: 'Not found'});
@@ -44,10 +39,9 @@ app.use('/api', (req, res) => {
 app.use((req, res) => {
   res.sendFile(process.cwd() + '/client/index.html');
 });
-/////////////////////////////////////////
 
 
-/////////////////////////////////////////
+//Database connection
 connect()
   .then(() => {
     server.listen(port, () => console.log(`Listening on port ${port}`));
